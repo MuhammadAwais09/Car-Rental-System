@@ -1,0 +1,174 @@
+<!-- <app-header></app-header> -->
+
+<section *ngIf="!isAdmin; else adminContent" class="container-fluid  py-3 ">
+
+    <section class="container-fluid px-0">
+        <div class="col-12" style="display: flex;justify-content: center;align-items: center;">
+            <div class="col-md-12 col-12 front-pic px-3">
+                <div>
+                    <h2>Easy way to rent a car at a low price</h2>
+                    <p>Providing cheap car rental services and safe and comfortable facilities.</p>
+                    <button>Rent To Car</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 my-3">
+
+            <div class="col-md-6 search-input">
+                <input type="text" placeholder="Search ..." [(ngModel)]="searchFIeld" (keydown.enter)="search()"/>
+                <span class="search-btn" (click)="search()"> <i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container-fluid">
+        <div class="col-12 popular-btn my-3">
+            <div>
+                <h5>{{carTypeTitle}}</h5>
+            </div>
+            <div>
+                <a role="button" *ngIf="recommendedLength>3" class="view-all-btn" (click)="viewAllRecommendations()">View All</a>
+            </div>
+        </div>
+        <div class="row grid">
+            <div class="col-md-4 col-12 flex" *ngFor="let car of dashBoardCardData">
+                <app-cards [car]="car" (favoriteEvent)="getRecommendedCars()" [rentNowBtn]="true"></app-cards>
+            </div>
+        </div>
+        <div class="not-found" *ngIf="!dashBoardCardData.length">No Data Found</div>
+    </section>
+
+    <div class="my-3"></div>
+
+    <section class="container-fluid pt-3">
+        <div class="col-12">
+            <h5>Showrooms</h5>
+        </div>
+        <div class="row grid">
+            <div class="col-md-4 col-12 mb-4 flex"
+                *ngFor="let showroom of showRoomCarData | paginate : { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords, id:'showroomCars' }">
+                <app-showroom-card [showroom]="showroom"></app-showroom-card>
+            </div>
+        </div>
+        <div class="not-found" *ngIf="!showRoomCarData.length">No Data Found</div>
+    </section>
+    <div class="pagination" *ngIf="showRoomCarData.length">
+        <pagination paginationId="showroomCars" (pageChanged)="pageChanged($event)" (pageSizeChanged)="pageSizeChanged($event)"></pagination>
+    </div>
+</section>
+
+<ng-template #adminContent>
+    <div class="col-12 my-5">
+        <div *ngIf="adminRoute === 'showrooms'; else carsContent">
+            <div class="col-12 status-btns">
+                <button (click)="updateFilterButton('pending')"
+                    [class.active]="filterBtn === 'pending'">Pending</button>
+                <button (click)="updateFilterButton('approved')"
+                    [class.active]="filterBtn === 'approved'">Approved</button>
+                <button (click)="updateFilterButton('rejected')"
+                    [class.active]="filterBtn === 'rejected'">Rejected</button>
+            </div>
+            <section class="container-fluid pt-3">
+                <div class="col-12">
+                    <h5>Showrooms</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-12 mb-4"
+                        *ngFor="let showroom of showRoomCarData | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords, id: 'showroomCards' }">
+                        <app-showroom-card [showroom]="showroom"></app-showroom-card>
+                    </div>
+                </div>
+                <div class="not-found" *ngIf="!showRoomCarData.length">No Data Found</div>
+            </section>
+            <div class="pagination" *ngIf="showRoomCarData.length">
+                <pagination paginationId="showroomCards" (pageChanged)="pageChanged($event)" (pageSizeChanged)="pageSizeChanged($event)">
+                </pagination>
+            </div>
+        </div>
+    </div>
+    <ng-template #carsContent>
+        <div class="col-12 my-5 showroom-btns">
+            <div class="col-12 status-btns">
+                <button [class.active]="filterBtn === 'pending'"
+                    (click)="updateCarFilterButton('pending')">Pending</button>
+                <button [class.active]="filterBtn === 'approved'"
+                    (click)="updateCarFilterButton('approved')">Approved</button>
+                <button [class.active]="filterBtn === 'rejected'"
+                    (click)="updateCarFilterButton('rejected')">Rejected</button>
+            </div>
+            <section class="container-fluid pt-3">
+
+                <div class="col-12">
+                    <h5>Cars</h5>
+                    <div class="row">
+                        <div class="col-md-4 col-12 mb-4"
+                            *ngFor="let car of carsData | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords, id: 'carsData' }">
+                            <app-cards [car]="car"></app-cards>
+                        </div>
+                    </div>
+                    <div class="pagination" *ngIf="carsData.length">
+                        <pagination paginationId="carsData" (pageChanged)="carsPageChanged($event)"
+                            (pageSizeChanged)="carsPageSizeChanged($event)">
+                        </pagination>
+                    </div>
+                    <div class="not-found" *ngIf="!carsData.length">No Data Found</div>
+                </div>
+                <!-- Cars Component -->
+            </section>
+        </div>
+    </ng-template>
+</ng-template>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 modal-btn">
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='all'}"
+                        (click)="modalSelectedBtn('all')">All</button>
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='withdriver'}"
+                        (click)="modalSelectedBtn('withdriver')">With Driver</button>
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='withoutdriver'}"
+                        (click)="modalSelectedBtn('withoutdriver')">With Out Driver</button>
+                </div>
+                <div class="col-12 d-flex selected-dropdown my-3">
+                    <select name="modal" id="modal">
+                        <option value="Modal" selected>Modal 1</option>
+                        <option value="Modal">Modal 2</option>
+                        <option value="Modal">Modal 3</option>
+
+                    </select>
+                    <select name="brand" id="brand">
+                        <option value="brand" selected>Brand 1</option>
+                        <option value="brand">Brand 2</option>
+                        <option value="brand">Brand 3</option>
+
+                    </select>
+
+                </div>
+                <div class="col-12 modal-location-input">
+                    <input type="text" placeholder=" &#xf3c5;  Location">
+                </div>
+                <div class="col-12">
+                    <h4>Price Range</h4>
+                    <p>Rs 5,000,000</p>
+                    <input type="range" name="#" id="price" class="price-range">
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center my-3">
+                    <div class="col-md-3 col-12 modal-search-btn">
+                        <button>Search</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

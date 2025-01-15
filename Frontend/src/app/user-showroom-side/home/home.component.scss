@@ -1,0 +1,16 @@
+.dash{
+    background: #F6F7F9;
+
+    padding: 2em;
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 980px){
+    .side-nav{
+        display: none;
+    }
+    .dash{
+        width: 100%;
+        padding: 0%;
+    }
+}

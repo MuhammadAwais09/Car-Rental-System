@@ -1,0 +1,106 @@
+<app-header></app-header>
+
+<div>
+
+    <section class="container-fluid pb-3 ">
+        <div class="car-list-section">
+            <!--            <div class="col-12">-->
+            <!--                <button class="filter-btn" (click)="filterBtn()"><i class="fa-solid fa-sliders me-2"></i>-->
+            <!--                    Filter</button>-->
+            <!--            </div>-->
+
+            <div class="bg-white category-btn-main-div  " *ngIf="filterDiv">
+
+                <div class=" category-btn">
+                    <div class="col-md-12 col-5 ">
+                        <p>Type</p>
+                        <form action="#">
+                            <div class="col-12" *ngFor="let brand of brands">
+                                <input type="radio" [(ngModel)]="selectedBrand"
+                                    (change)="action == 'recommended' ? getRecommendedCars() : searchText != undefined ?  getSearchCars(searchText): getAllCars()"
+                                    name="brands" [value]="brand._id" id="{{brand.name}}">
+                                <label for="{{brand.name}}">{{brand.name | titlecase}}</label>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+                <div class="col-md-12 col-12">
+                    <input (change)="action == 'recommended' ? getRecommendedCars() : getAllCars()"
+                        [(ngModel)]="priceRange" min="100" max="100000" type="range" class="price-range-input">
+                    <p *ngIf="priceRange > 0">Current Range: {{priceRange}}</p>
+                    <p>Max Price 100000</p>
+                </div>
+                <div class="btn-div mb-4">
+                    <button class="main-btn" (click)="reset()">Reset</button>
+                </div>
+            </div>
+            <div class="main-view">
+                <!-- <div class="back-btn " >
+                    <span> <i class="fa-solid fa-arrow-left fa-2x me-2"  (click)="utilService.back()"></i> Go Back</span>
+                   </div> -->
+                <div class="col-12  view-btn ">
+
+                    <h5 class="mb-0 grey-title">{{pageTitle}}</h5>
+                </div>
+                <div class="col-12 showroom-btns mt-3 d-flex">
+                    <div class="col-md-7 col-12 fuel-btns" *ngIf="showRomCardData.length">
+                        <button [ngClass]="{'fuel-btns-select':fuelBtn==='All'}"
+                            (click)="selectedFuelBtn('All')">All</button>
+                        <button [ngClass]="{'fuel-btns-select':fuelBtn==='Petrol'}"
+                            (click)="selectedFuelBtn('Petrol')">Petrol</button>
+                        <button [ngClass]="{'fuel-btns-select':fuelBtn==='Desel'}"
+                            (click)="selectedFuelBtn('Desel')">Desel</button>
+                        <button [ngClass]="{'fuel-btns-select':fuelBtn==='fvrt'}"
+                            (click)="selectedFuelBtn('fvrt')">Favorite</button>
+                    </div>
+                    <div class="ms-auto mb-4" *ngIf="isMyShowroom">
+                        <button class="main-btn" routerLink="/add-upload-car-details">Upload Cars</button>
+                    </div>
+                </div>
+
+                <div class="col-12 status-btns" *ngIf="showroomOwner && action!='recommended' && userShowroom">
+                    <button [class.active]="filterButton === 'pending'"
+                        (click)="onStatusChange('pending')">Pending</button>
+                    <button [class.active]="filterButton === 'approved'"
+                        (click)="onStatusChange('approved')">Approved</button>
+                    <button [class.active]="filterButton === 'rejected'"
+                        (click)="onStatusChange('rejected')">Rejected</button>
+                </div>
+
+                <div class="car-listing mt-4">
+                    <div class="col-12"
+                        *ngFor="let items of dashBoardCardData | paginate : { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords, id: 'carListing' }">
+                        <app-cards [car]="items" [rentNowBtn]="!isMyShowroom"
+                            [isShowroomOwner]="isMyShowroom"></app-cards>
+                    </div>
+                </div>
+
+                <div class="not-found" *ngIf="!dashBoardCardData.length">Data Not Found</div>
+
+                <div class="row mt-4 " *ngIf="!divTogle">
+                    <div class="col-md-4 col-12"
+                        *ngFor="let items of showRomCardData | paginate : { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords }">
+                        <app-cards [car]="items" [btnDiv]="true" [priceUper]="true"></app-cards>
+                    </div>
+                </div>
+                <div class="row mt-4 " *ngIf="!divTogle">
+                    <div class="col-md-4 col-12"
+                        *ngFor="let items of getAllFvrt | paginate : { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords }">
+                        <app-cards [car]="items" [btnDiv]="true" [priceUper]="true"></app-cards>
+                    </div>
+                </div>
+                <div class="pagination" *ngIf="dashBoardCardData.length||showRomCardData.length||getAllFvrt.length">
+                    <pagination paginationId="carListing" (pageChanged)="pageChanged($event)"
+                        (pageSizeChanged)="pageSizeChanged($event)">
+                    </pagination>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<app-footer></app-footer>

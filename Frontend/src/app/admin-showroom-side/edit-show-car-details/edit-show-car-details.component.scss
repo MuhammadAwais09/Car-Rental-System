@@ -1,0 +1,173 @@
+.container-1 {
+    .heading-style {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        h5 {
+            font-family: Plus Jakarta Sans;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        div{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            button{
+                // color: white;
+                font-size: 16px;
+                font-weight: 600;
+                border: none;
+                outline: none;
+                padding: 7px 1em;
+                
+            }
+        }
+    }
+
+    .pic-show-main-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .car-image-show {
+        width: 100%;
+        height: 50vh;
+        // background-color: aqua;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .slider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-child {
+            width: min(100%, 720px);
+        }
+
+        @media only screen and (min-width: 300px) and (max-width: 980px) {
+            width: 100%;
+        }
+    }
+
+    .small-car-main-div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .small-car-image {
+        width: 164px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .selected-car-image {
+        padding: 7px;
+        border: 2px solid orangered;
+    }
+}
+
+.container-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f7f9;
+
+    .form-main-div {
+        padding: min(2em, calc(2vw + 10px));
+        background-color: white;
+        border-radius: 5px;
+
+        button {
+            background-color: orangered;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            padding: 9px 2em;
+            color: white;
+        }
+    }
+
+    form {
+
+
+        h5 {
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            margin-bottom: 0%;
+        }
+
+        .forms-style {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            column-gap: 7em;
+            row-gap: 2em;
+            grid-row: span 2;
+
+        }
+
+        label {
+            font-family: Plus Jakarta Sans;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+
+        }
+
+        select {
+            width: 100%;
+            height: 50px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: none;
+            width: 100%;
+            height: 130px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+        }
+
+        .upload-car-pic {
+            width: 10rem !important;
+            height: 5rem !important;
+            background-color: #F6F7F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    }
+}

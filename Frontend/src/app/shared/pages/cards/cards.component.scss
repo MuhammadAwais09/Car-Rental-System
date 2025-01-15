@@ -1,0 +1,106 @@
+.heart-icon-btn {
+   border: none;
+   background-color: white;
+   outline: none;
+   font-size: x-large;
+   float: right;
+}
+
+.card-car-image {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: calc(150px + 3vw);
+   border: thin solid grey;
+   border-radius: 7px;
+   overflow: hidden;
+
+   img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
+}
+
+.card-top-data {
+   display: flex;
+   justify-content: space-between;
+
+   .title{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 28px;
+   }
+
+
+   h4{
+      font-weight: 500;
+      font-size: 22px;
+   }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 18px;
+  }
+}
+
+.car-information {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   p{
+      font-size: 13px;
+      display: flex;
+      gap: 0.25em;
+      align-items: center;
+      margin: 0;
+   }
+
+}
+
+.price-area {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.extraBtn {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.bokedCarUseInfo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   flex-shrink: 0;
+   p {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      color: #90A3BF;
+   }
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 980px) {
+   .boking-btn {
+      padding: -1%;
+      font-size: medium;
+      /* font-weight: 200; */
+   }
+
+   // .card-top-data h5 {
+   //    font-size: 16px;
+   // }
+
+   // .price-area h5 {
+   //    font-size: 10px;
+   // }
+}

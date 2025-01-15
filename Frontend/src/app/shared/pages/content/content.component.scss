@@ -1,0 +1,28 @@
+main {
+    padding: 1em 2em;
+
+
+    .banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        background: #ff9f7b;
+        color: white;
+        font-weight: bolder;
+    }
+
+    .content {
+        padding-block: 2em;
+    }
+}
+
+
+.back-btn {
+    padding: 1em 2em;
+
+    .fa-arrow-left {
+        color: var(--primary);
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,109 @@
+<app-header></app-header>
+<section class="container-fluid pt-4">
+    <div class="col-md-9 col-12 form-main-div mb-4">
+        <form [formGroup]="uploadCarDetailsForm">
+            <h5>Details</h5>
+            <p>Please enter your info</p>
+            <div class="forms-style">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="tile" placeholder="Type here..." formControlName="title">
+                </div>
+                <div>
+                    <label for="feature">Feature</label>
+                    <select id="feature" formControlName="feature">
+                        <option value="" selected>Select Feature</option>
+                        <option value="manual">Manual</option>
+                        <option value="auto">Auto</option>
+
+                    </select>
+                </div>
+                <div>
+                    <label for="model">Model</label>
+                    <select id="model-type" formControlName="model">
+                        <option value="">Select Model</option>
+                        <option value="{{year}}" *ngFor="let year of models">{{year}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fuel-type">Fuel Type</label>
+                    <select id="fuel-type" formControlName="fuelType">
+                        <option value="">Select Fueltype</option>
+                        <option value="electric">Electric</option>
+                        <option value="cng">CNG</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="petrol">Petrol</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="brand">Brand</label>
+                    <select id="brand-type" formControlName="brand">
+                        <option value="">Select Brands</option>
+                        <option [value]="brandList._id" *ngFor="let brandList of brand"> {{brandList.name | titlecase}}
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location">Location</label>
+                    <select id="location" formControlName="location" class="capitalize">
+                        <option value="">Type Here....</option>
+                        <option *ngFor="let location of locations" [value]="location.name">
+                            {{ location.name }}
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="milage">Milage</label>
+                    <input type="number" nonNegative id="milage" placeholder="Type here..." formControlName="mileage">
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <input type="number" id="price" nonNegative placeholder="Type here..." formControlName="realPrice">
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <label for="driver-type">Driver Type</label>
+                    <select id="driver-type" formControlName="driverType">
+                        <option value="">Type Here....</option>
+                        <option value="withDriver">Driver</option>
+                        <option value="withoutDriver">Wirhout Driver</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea id="Description" formControlName="description"></textarea>
+                </div>
+                <div>
+                    <label for="add-car-picture">Add picture car</label>
+                    <div class="images" *ngIf="pictures.length">
+                        <div class="uploaded-picture" *ngFor="let item of pictures; let i=index">
+                            <i *ngIf="isEditable" class="fa-solid fa-trash" (click)="deleteImage(i)"></i>
+                            <img [src]="utils.getFile(item)" [alt]="item">
+                        </div>
+                    </div>
+                    <label *ngIf="isEditable" for="add-car-picture" class="upload-car-pic"><img
+                            src="../../../assets/logo/Vector.png" alt=""></label>
+                    <input *ngIf="isEditable" type="file" hidden id="add-car-picture" multiple
+                        (change)="onFileChange($event)">
+                </div>
+            </div>
+        </form>
+        <div class="col-12 text-center my-4">
+            <button (click)="submitCarForm()"
+                [ngClass]="uploadCarDetailsForm?.invalid || isSpinnerLoading? 'disabled':'' "
+                [disabled]="uploadCarDetailsForm?.invalid  || isSpinnerLoading" *ngIf="!(carId && !isEditable)">{{carId
+                &&
+                isEditable ? 'Update' :
+                'Upload'}}</button>
+        </div>
+
+        <div class="col-12 text-center my-4 buttons" *ngIf="isAdmin && carStatus === 'pending'">
+            <button (click)="updateStatus('rejected')">Reject</button>
+            <button (click)="updateStatus('approved')">Approve</button>
+        </div>
+
+    </div>
+</section>
+<app-footer></app-footer>

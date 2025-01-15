@@ -1,0 +1,77 @@
+<div class=" col-12 mb-2">
+    <div class="card px-2 py-2">
+        <div class="col-12 card-top-data" *ngIf="!priceUper">
+            <div class="col-10">
+                <h4 class="title"> {{car.title}} </h4>
+                <h3 class="price">Rs.{{car.realPrice}}/day</h3>
+            </div>
+            <div class="col-2 text-end" *ngIf="!isAdmin">
+                <button *ngIf="!isShowroomOwner " class="heart-icon-btn" (click)="addRemoveFavorite($event, car._id)"><i
+                        class="{{car.isFavorite || isFavorite ? 'fa-solid':'fa-regular'}}
+                     fa-heart btn-danger"></i></button>
+                <button *ngIf="isShowroomOwner && isBooking" class="main-btn" style="font-size: 10px;"
+                    (click)="goToViewOrrder($event)">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-12 price-area mt-2" *ngIf="priceUper">
+            <div>
+                <h5>{{car.realPrice}}</h5>
+            </div>
+        </div>
+        <div class="col-12 card-car-image mt-2">
+            <img [src]="utilService.getFile(car?.pictures?.[0]) ? utilService.getFile(car.pictures[0]): 'assets/imgs/placeholder-image.png'"
+                class="card-img-top" alt="Car Image">
+        </div>
+        <div class="card-body px-0" *ngIf="!showCarFeatures">
+            <div class="car-information mt-2">
+                <div>
+                    <p> <span><i class="fa-solid fa-gas-pump"></i></span> {{car.mileage}} </p>
+                </div>
+                <div>
+                    <p> <img src="../../assets/logo/Car.png" alt=""> {{car.feature == featureEnum.MANUAL ? 'Manual':
+                        'Auto'}}
+                    </p>
+                </div>
+                <div>
+                    <p> <span><i class="fa-solid fa-user-group"></i></span> {{car.driverType == driverType.WITH_DRIVER ?
+                        'With Driver':'Without Driver'}}</p>
+                </div>
+            </div>
+            <div *ngIf="isShowroomOwner && !isBooking" class="btn-div between">
+                <button class="main-btn m-0" (click)="goToEditCar($event, car._id, true)">Edit</button>
+        
+                <button class=" main-btn m-0" (click)="goToEditCar($event, car._id, false)"> View </button>
+            </div>
+            <div *ngIf="isAdmin" class="btn-div between">
+                <button class="main-btn m-0" (click)="goToEditCar($event, car._id, false)"> View </button>
+            </div>
+            <div *ngIf="isBooking && booking.status != statusEnum.PENDING && !isShowroomOwner" class="btn-div end">
+                <button class="main-btn m-0" (click)="goToViewOrrder($event)"> View </button>
+            </div>
+            <div *ngIf="isBooking && booking.status == statusEnum.PENDING && !isShowroomOwner" class="btn-div between">
+                <button class="main-btn m-0" (click)="updateStatus($event, booking._id, 'cancelled')"> Cancel </button>
+                <button class="main-btn m-0" (click)="goToViewOrrder($event)"> View </button>
+            </div>
+            <div *ngIf="isShowroomOwner && isBooking && booking.status == statusEnum.PENDING" class="btn-div between">
+                <button class="main-btn m-0" (click)="updateStatus($event, booking._id, 'accepted')"> Accept </button>
+                <button class="main-btn m-0" (click)="updateStatus($event, booking._id, 'rejected')"> Reject </button>
+            </div>
+            <div *ngIf="rentNowBtn && !isAdmin || favoriteTab && !isAdmin" class="col-12 btn-div end">
+                <button class="main-btn" (click)="rentNowFn(car._id)"> Rent Now </button>
+            </div>
+            <div *ngIf="booking.status == 'accepted' && isShowroomOwner" class="col-12 btn-div end">
+                <button class="main-btn" (click)="updateStatus($event, booking._id, 'completed')">Complete</button>
+            </div>
+
+        </div>
+        <!-- <div class="card-body px-0 bokedCarUseInfo  " *ngIf="showCarFeatures">
+            <p> {{car.userName}} </p>
+            <p> {{car.userPhone}} </p>
+            <button class="boking-btn"> {{car.btnName}} </button>
+        </div> -->
+    </div>
+</div>
+
+<!-- <app-login-popup [showLoginPopup]="showLoginPopup"></app-login-popup> -->

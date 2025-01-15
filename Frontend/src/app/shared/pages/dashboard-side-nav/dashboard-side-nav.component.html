@@ -1,0 +1,54 @@
+<section class="container-fluid py-2">
+    <div class="col-12 sidenav-btn">
+
+        <!-- Admin -->
+        <div class="col-12" *ngIf="isAdmin; else userView">
+            <div class="col-12">
+                <button routerLink="showrooms" [routerLinkActive]="'active-btn'">
+                    <span class="me-2"><i class="fa-solid fa-home"></i></span> Showrooms</button>
+
+                <button routerLink="cars" [routerLinkActive]="'active-btn'">
+                    <span class="me-2"><i class="fa-solid fa-car"></i></span> Cars</button>
+                <!-- <button routerLink="content-management/privacy-policy" [class.active-btn]="isContentPageActive()">
+                    <span class="me-2"><i class="fa-solid fa-file"></i></span> Content Management</button> -->
+            </div>
+        </div>
+        <!-- Admin -->
+
+        <ng-template #userView>
+            <div class="col-12">
+                <button routerLink="" [routerLinkActive]="'active-btn'" (click)="changeRoute()"
+                    [routerLinkActiveOptions]="{exact:true}">
+                    <span class="me-2"><i class="fa-solid fa-home"></i></span> Home</button>
+                <button (click)="goToBookedCars()" [class.active-btn]="isBookedCarActive()"
+                    *ngIf="userService.userToken">
+                    <span class="me-2"><i class="fa-solid fa-car-tunnel"></i></span> Booked cars</button>
+                <button routerLink="/enter-showroom-details" (click)="changeRoute()" [routerLinkActive]="'active-btn'"
+                    *ngIf="userService.userToken && !userService.showroomOwner"> <span class="me-2"><i
+                            class="fa-solid fa-car-tunnel"></i></span>
+                    Add Showroom</button>
+                <button routerLink="/my-showroom" (click)="changeRoute()" [routerLinkActive]="'active-btn'"
+                    *ngIf="userService.userToken && userService.showroomOwner"> <span class="me-2"><i
+                            class="fa-solid fa-car-tunnel"></i></span>
+                    My Showroom</button>
+                <button (click)="goToCarRent(userService.showRoomId)" [routerLinkActive]="'active-btn'"
+                    *ngIf="userService.showroomOwner"> <span class="me-2"><i
+                            class="fa-solid fa-car-tunnel"></i></span>Showroom
+                    Cars</button>
+                <button [class.active-btn]="isMyOrderActive()" *ngIf="userService.showroomOwner"
+                    (click)="goToMyOrders()">
+                    <span class="me-2"><i class="fa-solid fa-car-tunnel"></i></span>My
+                    orders
+                </button>
+            </div>
+
+        </ng-template>
+
+        <div class="col-12 sidenav-btn">
+            <button [routerLinkActive]="'active-btn'" class="hide"> <span class="me-2"> </span> Settings</button>
+            <button [routerLinkActive]="'active-btn'" class="hide"> <span class="me-2"><i class="fa-solid fa-headset"></i></span>
+                Help & Center</button>
+        </div>
+
+    </div>
+</section>

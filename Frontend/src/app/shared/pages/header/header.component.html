@@ -1,0 +1,114 @@
+<section class="container-fluid py-3">
+    <nav>
+        <div class="col-md-6 d-flex gap-5" style="align-items: center;">
+
+            <button class="side-nav" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+                aria-controls="staticBackdrop"><i class="fa-solid fa-bars"></i></button>
+
+            <h3 class="title" routerLink="">Showroom</h3>
+
+            <div class="col-md-6 search-input">
+                <input type="text" placeholder="Search ..." [(ngModel)]="searchField" (keydown.enter)="search()" />
+
+                <span class="search-btn" (click)="search()"> <i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+
+            <!-- Button trigger modal -->
+            <!-- <button class="popup-setting-btn" type="button" data-bs-toggle="modal" (click)="opeModal()"
+                data-bs-target="#exampleModal"><i class="fa-solid fa-sliders"></i></button> -->
+        </div>
+        <div class="col-md-6 btn-icons gap-2" *ngIf="userService.isAuthenticated">
+            <div class="user-image-div" routerLink="/my-profile">
+                <img src="{{_utilService.profilePic}}" alt="">
+            </div>
+            <button class="hide"><i class="fa-solid fa-gear"></i></button>
+            <button *ngIf="!isAdmin" routerLink="/favorites"><i class="fa-solid fa-heart"></i></button>
+            <button (click)="notification()" class="notifications desktop-view"><i class="fa-solid fa-bell"><span
+                        class="dot" *ngIf="userService.notifications > 0"></span></i></button>
+            <div class="d-flex align-items-center justify-content-center">
+                <a role="button" class="mobile-view-bell-icon notifications mobile-view" (click)="notification()"> <i
+                        class="fa-solid fa-bell"><span class="dot" *ngIf="userService.notifications > 0"></span></i></a>
+            </div>
+        </div>
+        <div *ngIf="!userService.isAuthenticated">
+            <button (click)="signIn()" class="signin">Sign In</button>
+        </div>
+    </nav>
+</section>
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">Showroom</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" #closeButton></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="col-md-6 side-nav-btn-icons gap-3 mb-4 container-fluid">
+            <div class="side-nav-user-image-div" routerLink="/my-profile" data-bs-dismiss="offcanvas">
+                <img src="{{_utilService.profilePic}}" alt="">
+            </div>
+
+
+            <button data-bs-dismiss="offcanvas"><i class="fa-solid fa-gear"></i></button>
+            <button data-bs-dismiss="offcanvas"><i class="fa-solid fa-heart" routerLink="/favorites"></i></button>
+
+
+        </div>
+        <div>
+            <app-dashboard-side-nav (closeModal)="closeModal()"></app-dashboard-side-nav>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 modal-btn">
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='all'}"
+                        (click)="modalSelectedBtn('all')">All</button>
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='withdriver'}"
+                        (click)="modalSelectedBtn('withdriver')">With Driver</button>
+                    <button [ngClass]="{'modal-btn-selected':selectedModalBtn==='withoutdriver'}"
+                        (click)="modalSelectedBtn('withoutdriver')">With Out Driver</button>
+                </div>
+                <div class="col-12 d-flex selected-dropdown my-3">
+                    <select name="modal" id="modal">
+                        <option value="">Select Model</option>
+                        <option value="{{year}}" *ngFor="let year of models">{{year}}</option>
+                    </select>
+                    <select name="brand" id="brand">
+                        <option value="">Select Brands</option>
+                        <option [value]="brandList._id" *ngFor="let brandList of brands"> {{brandList.name | titlecase}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-12 modal-location-input">
+                    <input type="text" placeholder=" &#xf3c5;  Location">
+                </div>
+                <div class="col-12">
+                    <h4>Price Range</h4>
+                    <p>Max Price 100000</p>
+                    <input [(ngModel)]="priceRange" min="100" max="100000" type="range" class="price-range">
+                    <p>Current Range: {{priceRange}}</p>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center my-3">
+                    <div class="col-md-3 col-12 modal-search-btn">
+                        <button>Search</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

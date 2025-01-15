@@ -1,0 +1,22 @@
+<main>
+    <div class="col-12 top-btn">
+        <h3 class="grey-title">{{pageTitle}}</h3>
+    </div>
+    <header>
+        <div class="col-12 mt-4  mb-3 showroom-btns">
+            <div class="col-12 filter-btns">
+                <button [ngClass]="activePage === RoutesNames['privacy-policy'] ? 'active': ''"
+                    (click)="getPrivacyPolicy()">Privacy Policy</button>
+                <button [ngClass]="activePage === RoutesNames['terms-conditions'] ? 'active': ''"
+                    (click)="getTermsConditions()">Terms & Conditions</button>
+            </div>
+        </div>
+    </header>
+
+    <!--================== EDITOR ====================-->
+    <div class="NgxEditor__Wrapper">
+        <!-- <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor> -->
+    </div>
+    <!--================== EDITOR ENDS ====================-->
+</main>

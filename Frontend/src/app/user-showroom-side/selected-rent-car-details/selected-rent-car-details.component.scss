@@ -1,0 +1,320 @@
+.front-pic {
+    border-radius: 10px;
+    /* width: 70vw; */
+    height: 50vh;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    background-image: url(../../../assets/imgs/BG.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.bg-clr {
+    background-color: #f6f7f9;
+
+}
+
+.content-section {
+    width: min(1000px, 100%);
+    margin: auto;
+
+    // Car Section
+    .car-section {
+        display: grid;
+        gap: 1em;
+
+        .small-car-div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: auto;
+            margin-top: 10px;
+            overflow-x: auto;
+            width: 1000px;
+
+            @media (max-width: 1000px) {
+                width: 800px;
+            }
+
+            @media (max-width: 800px) {
+                width: 600px;
+            }
+
+            @media (max-width: 600px) {
+                width: 400px;
+            }
+
+            @media (max-width: 400px) {
+                width: 290px;
+            }
+
+            .image-div {
+                width: 190px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 4px;
+                cursor: pointer;
+                min-width: 100px;
+                overflow: hidden;
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+
+    }
+}
+
+.cnic-main-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+
+    label {
+        width: 100%;
+    }
+}
+
+.show-smal-seletd-image {
+    width: 100%;
+    object-fit: cover;
+    height: 50vh;
+    border-radius: 10px;
+}
+
+.front-pic h2 {
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+
+}
+
+.front-pic p {
+    font-size: larger;
+    color: white;
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+.rating-fvrt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heart-icon-btn {
+    font-size: x-large;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.car-details {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+
+
+}
+
+.categeroy-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+}
+
+.highligt {
+    text-decoration: none;
+    font-size: large;
+    font-weight: 630;
+    color: #596780;
+}
+
+.price {
+    font-size: x-large;
+    font-weight: 700;
+}
+
+
+
+
+
+.selected-image {
+    padding: 5px;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+}
+
+form input {
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    background-color: rgba(224, 219, 219, 0.849);
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    overflow-y: auto;
+    outline: none;
+    border: none;
+    background-color: rgba(224, 219, 219, 0.849);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+form label {
+    // width: 100%;
+    font-size: 16px;
+    font-weight: 480;
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+.rent-btn {
+    padding: 10px;
+    background-color: var(--primary);
+    color: white;
+    font-size: larger;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+.cnic-image {
+    width: 190px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(224, 219, 219, 0.849);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cnic-upload {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cnic-uplod-main-div {
+    width: 30%;
+}
+
+.not-authenticated {
+    margin-block-start: 2em;
+
+    p {
+        padding: 0.5em;
+        background: #ff45003d;
+        border-radius: 5px;
+        width: max-content;
+        color: rgba(0, 0, 0, 0.651);
+
+        span {
+            font-weight: bold;
+            color: orangered;
+            cursor: pointer;
+        }
+    }
+}
+
+.password-icon-parent {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    cursor: pointer;
+    z-index: 111;
+    transform: translate(-50%, -50%);
+}
+
+.login-popup-form {
+    input {
+        width: 100%
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1200px) {
+
+    .pic-main-div {
+        width: 100%;
+    }
+
+    .car-detail-card {
+        width: 47%;
+    }
+
+    .cnic-upload {
+        gap: 10px;
+    }
+
+    .cnic-uplod-main-div {
+        width: 32%;
+    }
+}
+
+.invalid{
+    border: 2px solid red !important;
+}
+
+// For Viewing the image ; when clicked :: OPTIONAL
+// .view{
+//     position: absolute;
+//     height: 32rem;
+//     right: 1rem;
+//     top: 91rem;
+// }
+
+@media only screen and (min-width: 300px) and (max-width: 980px) {
+    .row {
+        // justify-content: center;
+        align-items: center;
+    }
+
+    .detail-title {
+        text-align: center;
+    }
+
+    form input {
+        width: 100%;
+    }
+
+    .cnic-uplod-main-div {
+        width: 47%;
+    }
+}

@@ -1,0 +1,22 @@
+<app-header></app-header>
+<section class="container-fluid py-4">
+    <div class="col-md-8  col-12 top-btn mb-2" *ngIf="pageType==='car-rent'">
+        <h4>Confirmation</h4>
+    </div>
+    <div class="col-md-8 col-12 bg-white py-5 px-5 card-main-div">
+        <div class="col-12 book-car-main-div">
+            <div *ngIf="pageType === 'car-rent'" class="image col-md-8 col-12 py-5 text-center ">
+                    <img src="../../../assets/imgs/booking-proceeded.jpeg" alt="">
+            </div>
+          <div *ngIf="pageType !== 'car-rent'" class="image col-md-8 col-12 py-5 text-center ">
+                    <img src="../../../assets/imgs/uploaded-success.jpeg" alt="">
+          </div>
+        </div>
+        <div class="col-12 btns my-3">
+            <button routerLink="/rent-a-car" class="main-btn" (click)="goBack()">Go Back</button>
+            <button class="main-btn" *ngIf="pageType === 'car-rent'" (click)="goToMyBookings()">View Bookings</button>
+            <button class="main-btn" *ngIf="pageType !=='car-rent'" (click)="goToMyCars()">View Your Cars</button>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

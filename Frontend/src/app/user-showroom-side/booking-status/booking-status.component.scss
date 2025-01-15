@@ -1,0 +1,44 @@
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    background-color: #f6f7f9;
+}
+
+.card-main-div {
+  .image {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.top-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.book-car-main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btns{
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 980px){
+    .card-main-div{
+        padding: 4px!important;
+    }
+    .book-car-main-div{
+        margin-top: 25px!important;
+        margin-bottom:25px!important;
+    }
+}

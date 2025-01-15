@@ -1,0 +1,303 @@
+<app-header></app-header>
+
+<main class="container-fluid pt-3 bg-clr">
+    <section class="content-section">
+
+        <div class="car-section px-1 gap-2">
+            <div class="mb-2 col-12 pic-main-div">
+                <div class="col-md-12 col-12 ">
+                    <img src="{{ getImageUrl(selectedCarImg) }}" alt="" class="show-smal-seletd-image">
+                </div>
+
+                <div class="small-car-div">
+                    <div class="image-div" *ngFor="let image of selectedCarDetails?.pictures">
+                        <img src="{{getImageUrl(image)}}" alt="image"
+                            [ngClass]="{'selected-image':selectedCarImg===image}" (click)="selectCarImg(image)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!userService.isAuthenticated" class="not-authenticated py-4 d-flex justify-content-center">
+            <button class="main-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Book Now</button>
+        </div>
+        <!-- <div *ngIf="!userService.isAuthenticated" class="not-authenticated">
+            <p>For booking the car please <span routerLink="/auth/login/user">Login</span> first and make your experience amazing with us.</p>
+        </div> -->
+
+        <div class="">
+            <div class="col-12 detail-title">
+                <h3>Car details</h3>
+            </div>
+
+            <form class="py-3">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="username">Name:</label>
+                        <input type="text" [placeholder]="selectedCarDetails.title" readonly name="fuelType">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="phone">Location:</label>
+                        <input type="text" name="location" [placeholder]="selectedCarDetails.location" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea name="" readonly id="" cols="30" rows="10"
+                            [placeholder]="selectedCarDetails.description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="username">Fuel Type:</label>
+                        <input type="text" readonly placeholder="{{selectedCarDetails?.fuelType === fuelType.ELECTRIC ? 'Electric':
+                            selectedCarDetails?.fuelType === fuelType.CNG ? 'Cng' : selectedCarDetails?.fuelType ===
+                            fuelType.DIESEL ? 'Diesel' : 'Petrol' }}" name="fuelType">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="phone">Steering:</label>
+                        <input type="text" readonly placeholder="{{selectedCarDetails?.feature == featureEnum.MANUAL ? 'Manual':
+                        'Auto'}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="username">Model:</label>
+                        <input type="text" readonly [placeholder]="selectedCarDetails.model" name="">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="phone">Milage:</label>
+                        <input type="tel" placeholder="User Phone" id="phone" readonly
+                            [placeholder]="selectedCarDetails.mileage">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="username">Driver Type:</label>
+                        <input type="text" name="" readonly placeholder="{{selectedCarDetails?.driverType == driverType.WITH_DRIVER ?
+                                'With Driver':'Without Driver'}}">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="phone">Brand:</label>
+                        <input type="text" readonly placeholder="{{selectedCarDetails.brand | titlecase}}">
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+
+        <div class="mt-5" *ngIf="userService.isAuthenticated">
+            <div class="col-12 detail-title">
+                <h3>User details</h3>
+                <p>Please enter your Details</p>
+            </div>
+            <div class="col-12  py-3">
+                <form action="#" [formGroup]="carRentForm">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label for="username">Name</label>
+                            <input type="text" placeholder="User Name" id="username" readonly
+                                [placeholder]="userData.name ||user.firstName + ' ' + user.lastName">
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="phone">Email:</label>
+                            <input type="tel" placeholder="User Phone" id="phone" readonly
+                                [placeholder]=" userData.email || user.email">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label for="phone">User Phone Number:</label>
+                            <input type="tel" placeholder="User Phone" id="phone" readonly
+                                [placeholder]=" userData.userPhoneNumber">
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="g-name">Surety Name</label>
+                            <input type="text" placeholder="Surety Name" id="g-name" formControlName="GranteeName" pattern="^[A-Za-z\s']+$" 
+                                [ngClass]="{'mb-0 ': carRentForm.get('GranteeName')?.invalid && (carRentForm.get('GranteeName')?.touched || carRentForm.get('GranteeName')?.dirty)}">
+                            <span
+                                *ngIf="carRentForm.get('GranteeName')?.invalid && (carRentForm.get('GranteeName')?.touched || carRentForm.get('GranteeName')?.dirty)"
+                                class="text-danger">
+                                Enter Valid Surety Name
+                            </span>
+
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-12">
+                            <label for="g-phone">Surety Phone Number</label>
+                            <input type="text" numberOnly placeholder="03006711111" maxlength="11" minlength="11" id="g-phone"
+                                formControlName="GranteePhoneNumber"
+                                [ngClass]="{'mb-0 ': carRentForm.get('GranteePhoneNumber')?.invalid && (carRentForm.get('GranteePhoneNumber')?.touched || carRentForm.get('GranteePhoneNumber')?.dirty)}">
+
+                            <span
+                                *ngIf="carRentForm.get('GranteePhoneNumber')?.invalid && (carRentForm.get('GranteePhoneNumber')?.touched || carRentForm.get('GranteePhoneNumber')?.dirty)"
+                                class="text-danger">
+                                Enter Valid Phone Number.
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="usercnic">User CNIC Number</label>
+                            <input type="text" maxlength="13" minlength="13" numberOnly  pattern="^\d{5}-?\d{7}-?\d$"   placeholder="Please enter your CNIC"
+                                id="UserCnic" formControlName="UserCnic"
+                                [ngClass]="{'mb-0 ': carRentForm.get('UserCnic')?.invalid && (carRentForm.get('UserCnic')?.touched || carRentForm.get('UserCnic')?.dirty)}">
+                            <span
+                                *ngIf="carRentForm.get('UserCnic')?.invalid && (carRentForm.get('UserCnic')?.touched || carRentForm.get('UserCnic')?.dirty)"
+                                class="text-danger">
+                                User CNIC is required.
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="g-cnic">Surety CNIC Number</label>
+                            <input type="text" maxlength="13" minlength="13" pattern="^\d{5}-?\d{7}-?\d$" numberOnly placeholder="Surety CNIC Number" id="g-cnic"
+                                formControlName="GranteeCnic"
+                                [ngClass]="{'mb-0 ': carRentForm.get('GranteeCnic')?.invalid && (carRentForm.get('GranteeCnic')?.touched || carRentForm.get('GranteeCnic')?.dirty)}">
+
+                            <span
+                                *ngIf="carRentForm.get('GranteeCnic')?.invalid && (carRentForm.get('GranteeCnic')?.touched || carRentForm.get('GranteeCnic')?.dirty)"
+                                class="text-danger">
+                                Surety CNIC is required.
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="row my-3">
+
+                        <div class="col-md-6 cnic-main-div">
+                            <div>
+                                <label>User CNIC Front Pic</label>
+                                <label for="user-cnic-Front" class="cnic-image">
+                                    <img src="{{userCnic}}" alt="" id="UserCnicPicFront">
+                                </label>
+                                <input *ngIf="action!='view'" type="file" (change)="onUserCnicFront($event)"
+                                    id="user-cnic-Front" hidden formControlName="UserCnicPicFront">
+                                <span
+                                    *ngIf="carRentForm.get('UserCnicPicFront')?.invalid && (carRentForm.get('UserCnicPicFront')?.touched || carRentForm.get('UserCnicPicFront')?.dirty)"
+                                    class="text-danger">
+                                    User Cnic front Pic is required.
+                                </span>
+                            </div>
+                            <div class="">
+                                <label>User CNIC back Pic</label>
+                                <label for="user-cnic-back" class="cnic-image">
+                                    <img src="{{userCnicBack}}" alt="" id="UserCnicPicBack">
+                                </label>
+                                <input *ngIf="action!='view'" type="file" (change)="onUserCnicBack($event)"
+                                    id="user-cnic-back" hidden formControlName="UserCnicPicBack">
+                                <span
+                                    *ngIf="carRentForm.get('UserCnicPicBack')?.invalid && (carRentForm.get('UserCnicPicBack')?.touched || carRentForm.get('UserCnicPicBack')?.dirty)"
+                                    class="text-danger">
+                                    User CNIC back pic is required.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 cnic-main-div">
+                            <div>
+                                <label>Surety CNIC Front Pic</label>
+                                <label for="gen-cnic-front" class="cnic-image">
+                                    <img src="{{suertyCnic}}" alt="" id="GranteeCnicPicFront">
+                                </label>
+                                <input *ngIf="action!='view'" type="file" id="gen-cnic-front"
+                                    (change)="onGuaranteeCnic($event)" hidden formControlName="GranteeCnicPicFront">
+                                <span
+                                    *ngIf="carRentForm.get('GranteeCnicPicFront')?.invalid && (carRentForm.get('GranteeCnicPicFront')?.touched || carRentForm.get('GranteeCnicPicFront')?.dirty)"
+                                    class="text-danger">
+                                    Surety CNIC front pic is required.
+                                </span>
+                            </div>
+                            <div>
+                                <label>Surety CNIC back Pic</label>
+                                <label for="gen-cnic-back" class="cnic-image">
+                                    <img src="{{suertyCnicBack}}" alt="" id="GranteeCnicPicBack">
+                                </label>
+                                <input *ngIf="action!='view'" type="file" id="gen-cnic-back"
+                                    (change)="onGuaranteeCnicback($event)" hidden formControlName="GranteeCnicPicBack">
+                                <span
+                                    *ngIf="carRentForm.get('GranteeCnicPicBack')?.invalid && (carRentForm.get('GranteeCnicPicBack')?.touched || carRentForm.get('GranteeCnicPicBack')?.dirty)"
+                                    class="text-danger">
+                                    Surety CNIC back pic is required.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label for="days">Rent Days</label>
+                            <input type="number" placeholder="How Many days" [disabled]="action === 'view'" id="days"
+                                #days (input)="countTotalCost($event)" nonNegative formControlName="days"
+                                [ngClass]="{'mb-0 ': carRentForm.get('days')?.invalid && (carRentForm.get('days')?.touched || carRentForm.get('days')?.dirty)}">
+
+                            <span
+                                *ngIf="carRentForm.get('days')?.invalid && (carRentForm.get('days')?.touched || carRentForm.get('days')?.dirty)"
+                                class="text-danger">
+                                Days Required
+                            </span>
+                        </div>
+                        <div class="col-md-6  col-12">
+                            <label for="days">Total Cost</label>
+                            <input type="number" placeholder="Total Cost" readonly id="days"
+                                formControlName="TotalCost">
+                        </div>
+                    </div>
+                    <div class="col-12 text-center my-4" *ngIf="action != 'view' && !bookNowBnt">
+                        <button class="main-btn" (click)="createOrder()">Book Now</button>
+                    </div>
+                </form>
+                <div class="action-btn">
+                    <button class="main-btn" *ngIf="bookingStatus===statusEnum.PENDING && isShowRoomOwner"
+                        (click)="updateStatus('accepted')">Accept</button>
+                    <button class="main-btn" *ngIf="bookingStatus===statusEnum.PENDING && isShowRoomOwner"
+                        (click)="updateStatus('rejected')">Reject</button>
+                    <button class="main-btn"
+                        *ngIf="bookingStatus===statusEnum.ACCEPTED && isShowRoomOwner">Completed</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<app-footer></app-footer>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeBtn></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="login-popup-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="&#xf0e0;  johndoe@gmail.com" formControlName="email">
+                    <div class="password-icon-parent">
+                        <label for="password"> Password</label>
+                        <input [type]="showPassword ? 'text' : 'password'" placeholder="&#xf023;  ******"
+                            formControlName="password">
+                        <img class="password-icon" (click)="togglePasswordVisibility()"
+                            [src]="showCnfrmPassword ? 'assets/logo/eye-slash.2.svg':'assets/logo/eye.3.svg'">
+                    </div>
+                    <div class="col-12 my-3 text-end">
+                        <a routerLink="/auth/email-for reset-password" class="forget-btn" data-bs-dismiss="modal">Forget
+                            Password</a>
+                    </div>
+                    <button type="submit" class="main-btn w-100 mx-0" [ngClass]="loginForm.invalid ? 'disabled':''"
+                        [disabled]="loginForm.invalid">Sign In</button>
+                </form>
+                <div class="col-12 text-center mt-3 ">
+                    <span>Don’t have an account? </span> <a routerLink="/auth/select-account-type" class="route-btn"
+                        role="button" data-bs-dismiss="modal">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

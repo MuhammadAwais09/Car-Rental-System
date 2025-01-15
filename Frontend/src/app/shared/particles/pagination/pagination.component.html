@@ -1,0 +1,11 @@
+<div class="pagination">
+    <div class="left">
+        <select name="" id="" (change)="pageSizeChangedFn($event)">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </div>
+    <pagination-controls [id]="paginationId" (pageChange)="pageChangedFn($event)"></pagination-controls>
+</div>

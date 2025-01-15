@@ -1,0 +1,27 @@
+<div class="card px-2 py-2">
+    <div class="cover-img">
+        <img [src]="utilityService.getFile(showroom.showRoomPicture)" class="card-img-top" alt="...">
+    </div>
+    <div class="card-body px-0">
+        <h6 class="card-title"> {{showroom.showRoomName}} </h6>
+        <div class="col-12 showrom-card-detail">
+            <p>Location</p>
+            <p class="clr-p">{{showroom.location}} </p>
+        </div>
+
+        <div class="col-12 showrom-card-detail">
+            <p>Avaliable cars: </p>
+            <p class="clr-p">{{showroom.carCount}}</p>
+        </div>
+        <div class="col-12 showrom-card-detail">
+            <p>Phone:</p>
+            <p class="clr-p"> {{showroom.phone}} </p>
+        </div>
+        <div class="btn-div end" *ngIf="!isAdmin">
+            <button class="main-btn" (click)="goToShowroom()">View</button>
+        </div>
+        <div class="btn-div end" *ngIf="isAdmin">
+            <button class="main-btn" (click)="getOneShowroom(showroom._id)">View</button>
+        </div>
+    </div>
+</div>

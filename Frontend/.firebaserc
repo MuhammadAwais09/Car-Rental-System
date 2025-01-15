@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "car-rental-66e8a": {
+      "hosting": {
+        "car-rent": [
+          "car-rental-66e8a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "car-rental-66e8a"
+  }
+}

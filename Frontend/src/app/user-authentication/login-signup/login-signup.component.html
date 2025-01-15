@@ -1,0 +1,296 @@
+<section class="container-fluid px-0">
+    <div class="col-flex">
+
+        <div class="col-md-6 col-12 slider ">
+
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner" style="max-height: 100vh;object-fit: contain">
+                    <div class="carousel-item active">
+                        <img src="../../../assets/imgs/cars-hd-widescreen-high-quality-desktop-wallpaper-preview.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../assets/imgs/bmw-cars-car-sport-car-wallpaper-preview.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../assets/imgs/Section(1).png" class="d-block w-100 " alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE FORM STARTING -->
+
+
+        <div class="form-div">
+            <div class="back-btn back-div">
+                <i class="fa-solid fa-arrow-left" (click)="_utilService.back()"></i>
+            </div>
+            <div class="form-div-inner">
+                <div class="col-12 logo pt-5">
+                    <img src="../../../assets/logo/Group 25.png" alt="">
+                </div>
+                <!-- <div class="back-btn">
+                    <i class="fa-solid fa-arrow-left" (click)="_utilService.back()"></i>
+                </div> -->
+                <div class="title" *ngIf="divTogle != 'otp'">
+                    <h3 class="">{{pageTitle}}</h3>
+                </div>
+
+                <div *ngIf="divTogle == 'otp'" class="title">
+                    <h3 class="text-center">Check Your Email</h3>
+                    <h3 class="text-center">Verification Code</h3>
+                    <p>We have sent a verification code on your mail. Please check it and fill the below field with OTP
+                    </p>
+                </div>
+
+                <!-- LOGIN -->
+                <div class="" *ngIf="divTogle==='login'">
+                    <form action="#" class=form-section [formGroup]="loginForm" (ngSubmit)="login()">
+                        <label for="email">Email</label>
+                        <input type="email" placeholder="&#xf0e0;  johndoe@gmail.com" formControlName="email">
+                        <div class="password-icon-parent">
+                            <label for="password"> Password</label>
+                            <input [type]="showPassword ? 'text' : 'password'" placeholder="&#xf023;  ******"
+                                formControlName="password">
+                            <img class="password-icon" (click)="togglePasswordVisibility()"
+                                [src]="showPassword ? 'assets/logo/eye-slash.2.svg':'assets/logo/eye.3.svg'">
+                        </div>
+                        <div class="col-12 my-3 text-end">
+                            <a routerLink="/auth/email-for reset-password" class="forget-btn">Forget Password</a>
+                        </div>
+                        <button type="submit" class="main-btn w-100 mx-0"
+                            [ngClass]="loginForm.invalid || isSpinnerLoading? 'disabled':''"
+                            [disabled]="loginForm.invalid || isSpinnerLoading">
+                            <div class="spinner-border" role="status" *ngIf="isSpinnerLoading"></div> Sign In
+                        </button>
+                    </form>
+                    <div class="col-12 text-center mt-3 ">
+                        <span>Don’t have an account? </span> <a routerLink="/auth/select-account-type" class="route-btn"
+                            role="button">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- SIGNUP -->
+                <div *ngIf="divTogle==='signup'">
+                    <form action="#" class=form-section [formGroup]="signUpForm" (ngSubmit)="signup()">
+                        <div class="form-input-flex col-12">
+                            <div>
+                                <label for="firstname">First Name</label>
+                                <input type="text" placeholder="&#xf007;  John" formControlName="firstname">
+                            </div>
+                            <div>
+                                <label for="lastname">Last Name</label>
+                                <input type="text" placeholder="&#xf007;  Wick" formControlName="lastname">
+                            </div>
+                        </div>
+                        <label for="email">Email</label>
+                        <input type="text" placeholder="&#xf0e0;  johndoe@gmail.com" formControlName="email">
+                        <label for="email">Phone</label>
+                        <input type="text" numberOnly placeholder="&#128241; 03XXXXXXXXX" maxlength="11"
+                            formControlName="phoneNumber">
+
+                        <div class="form-input-flex col-12">
+                            <div class="password-icon-parent">
+                                <label for="password"> Password</label>
+                                <input [type]="showPassword ? 'text' : 'password'" placeholder="&#xf023;  ******"
+                                    formControlName="password">
+                                <img class="password-icon" (click)="togglePasswordVisibility()"
+                                    [src]="showPassword ? 'assets/logo/eye-slash.2.svg' : 'assets/logo/eye.3.svg'">
+                            </div>
+
+
+                            <div class="password-icon-parent">
+                                <label for="confrimpassword">Confrim Password</label>
+                                <input [type]="showCnfrmPassword ? 'text' : 'password'" placeholder="&#xf023;   ******"
+                                    formControlName="confrimpassword">
+                                <img class="password-icon" (click)="toggleCnfrmPasswordVisibility()"
+                                    [src]="showCnfrmPassword ? 'assets/logo/eye-slash.2.svg' : 'assets/logo/eye.3.svg'">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <p
+                                [ngClass]="{'password-validation':loginUserPassword?.hasError('uppercase') && loginUserPassword?.touched}">
+
+                                <span><input type="radio"
+                                        [checked]="loginUserPassword?.hasError('uppercase') && loginUserPassword?.touched"></span>
+                                Password must contain at least one uppercase letter.
+                            </p>
+
+                            <p
+                                [ngClass]="{'password-validation':loginUserPassword?.hasError('specialCharacter') && loginUserPassword?.touched}">
+                                <span><input type="radio"
+                                        [checked]="loginUserPassword?.hasError('specialCharacter') && loginUserPassword?.touched"></span>
+                                Password must contain at least one special character.
+                            </p>
+                            <p
+                                [ngClass]="{'password-validation':loginUserPassword?.hasError('number') && loginUserPassword?.touched}">
+                                <span><input type="radio"
+                                        [checked]="loginUserPassword?.hasError('number') && loginUserPassword?.touched"></span>
+                                Password must contain at least one number.
+                            </p>
+                            <p
+                                [ngClass]="{'password-validation':loginUserPassword?.errors?.['minlength'] && loginUserPassword?.touched}">
+                                <span><input type="radio"
+                                        [checked]="loginUserPassword?.errors?.['minlength'] && loginUserPassword?.touched"></span>
+                                Password must be at least 8 characters.
+                            </p>
+                            <p
+                                [ngClass]="{'password-validation': signUpForm.get('confrimpassword')?.value!==signUpForm.get('password')?.value}">
+                                <span><input type="radio"
+                                        [checked]="signUpForm.get('confrimpassword')?.value!==signUpForm.get('password')?.value"></span>
+                                Passwords do not match.
+                            </p>
+                        </div>
+                        <button type="submit"
+                            [ngClass]="signUpForm?.invalid || isSpinnerLoading || signUpForm.get('confrimpassword')?.value!==signUpForm.get('password')?.value? 'disabled':''"
+                            [disabled]="signUpForm?.invalid || isSpinnerLoading || signUpForm.get('confrimpassword')?.value!==signUpForm.get('password')?.value"
+                            class="main-btn w-100 mx-0">
+                            <div class="spinner-border" role="status" *ngIf="isSpinnerLoading"></div> Sign Up
+                        </button>
+                    </form>
+                    <div class="col-12 text-center mt-3 ">
+                        <span>Already have an account? </span> <a routerLink="/auth/login/user" class="route-btn"
+                            role="button">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- OTP -->
+                <div class="" *ngIf="divTogle==='otp'">
+                    <div class="" style="display: flex;justify-content: center;">
+                        <div class="text-center">
+                            <ng-otp-input [config]="{length:6, allowNumbersOnly: true}"
+                                (onInputChange)="onOtpInputChange($event)"></ng-otp-input>
+
+                            <div class="send-otp">
+                                <p *ngIf="!showTimer">Didn't receive code?</p>
+                                <button (click)="resendOtpFn()" *ngIf="!showTimer">Resend Code</button>
+                                <p *ngIf="showTimer">{{minutes + ':' + seconds}}</p>
+                            </div>
+                            <div class="otp-btn my-4">
+                                <button class="main-btn w-100 mx-0"
+                                    [ngClass]="isDisabled || isSpinnerLoading? 'disabled':'' "
+                                    [disabled]="isDisabled || isSpinnerLoading" (click)="onVerifyClick()">
+                                    <div class="spinner-border" role="status" *ngIf="isSpinnerLoading"></div> Verify
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORGET PASSWORD -->
+                <div class="" *ngIf="divTogle==='reset-email'">
+                    <div class="col-12 ">
+                        <form action="#" class=form-section [formGroup]="resetMail" (ngSubmit)="resetMailValue()">
+                            <label for="reset-email">Email</label>
+                            <input type="email" required name="reset-email" id="reset-email"
+                                placeholder="&#xf0e0; johndoe@gmail.com" formControlName="email">
+                            <button type="submit" class="main-btn w-100 m-0"
+                                [ngClass]="resetMail?.invalid || isSpinnerLoading ? 'disabled':''"
+                                [disabled]="resetMail?.invalid || isSpinnerLoading">
+                                <div class="spinner-border" role="status" *ngIf="isSpinnerLoading"></div> Continue
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- RESET PASSWORD -->
+                <div *ngIf="divTogle==='set-new-password'">
+                    <div class="col-12 " style="display: flex;justify-content: center;">
+                        <div class="">
+                            <form action="#" class=form-section [formGroup]="chnageNewPassword"
+                                (ngSubmit)="chnageNewPasswordValue()">
+                                <div class="form-input-flex col-12">
+                                    <div class="password-icon-parent">
+                                        <label for="password"> Password</label>
+                                        <input [type]="chnagePassword ? 'text' : 'password'"
+                                            placeholder="&#xf023;  ******" formControlName="newPassword">
+                                        <img class="password-icon" (click)="toggleResetPasswordVisibility()"
+                                            [src]="chnagePassword ? 'assets/logo/eye-slash.2.svg' : 'assets/logo/eye.3.svg'">
+                                    </div>
+                                    <div class="password-icon-parent">
+                                        <label for="confrimpassword">Confrim Password</label>
+                                        <input [type]="chnageCnfrmPassword ? 'text' : 'password'"
+                                            placeholder="&#xf023;   ******" formControlName="confrimpassword">
+                                        <img class="password-icon" (click)="toggleResetCnfrmPasswordVisibility()"
+                                            [src]="chnageCnfrmPassword ? 'assets/logo/eye-slash.2.svg' : 'assets/logo/eye.3.svg'">
+                                    </div>
+                                    <div class="col-12">
+                                        <p
+                                            [ngClass]="{'password-validation':resetUserPassword?.hasError('uppercase') && resetUserPassword?.touched}">
+
+                                            <span><input type="radio"
+                                                    [checked]="resetUserPassword?.hasError('uppercase') && resetUserPassword?.touched"></span>
+                                            Password must contain at least one uppercase letter.
+                                        </p>
+
+                                        <p
+                                            [ngClass]="{'password-validation':resetUserPassword?.hasError('specialCharacter') && resetUserPassword?.touched}">
+                                            <span><input type="radio"
+                                                    [checked]="resetUserPassword?.hasError('specialCharacter') && resetUserPassword?.touched"></span>
+                                            Password must contain at least one special character.
+                                        </p>
+                                        <p
+                                            [ngClass]="{'password-validation':resetUserPassword?.hasError('number') && resetUserPassword?.touched}">
+                                            <span><input type="radio"
+                                                    [checked]="resetUserPassword?.hasError('number') && resetUserPassword?.touched"></span>
+                                            Password must contain at least one number.
+                                        </p>
+                                        <p
+                                            [ngClass]="{'password-validation':resetUserPassword?.errors?.['minlength'] && resetUserPassword?.touched}">
+                                            <span><input type="radio"
+                                                    [checked]="resetUserPassword?.errors?.['minlength'] && resetUserPassword?.touched"></span>
+                                            Password must be at least 8 characters.
+                                        </p>
+                                        <p
+                                            [ngClass]="{'password-validation': resetUserPassword?.value!==resetUserConfirmPassword?.value}">
+                                            <span><input type="radio"
+                                                    [checked]="resetUserPassword?.value!==resetUserConfirmPassword?.value"></span>
+                                            Passwords do not match.
+                                        </p>
+                                    </div>
+                                </div>
+                                <button class="main-btn mx-0 w-100" type="submit"
+                                    [ngClass]="chnageNewPassword?.invalid || isSpinnerLoading || resetUserPassword?.value!==resetUserConfirmPassword?.value? 'disabled':''"
+                                    [disabled]="chnageNewPassword?.invalid || isSpinnerLoading || resetUserPassword?.value!==resetUserConfirmPassword?.value">
+                                    <div class="spinner-border" role="status" *ngIf="isSpinnerLoading"></div> Update
+                                    Password
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Options for Singup -->
+                <div class="form-div account-type" *ngIf="divTogle==='select-user'">
+                    <div class="user-select-btn">
+                        <button routerLink="/auth/signup/user">Rent a Car</button>
+                        <button routerLink="/auth/signup/showroom">Own a Showroom</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

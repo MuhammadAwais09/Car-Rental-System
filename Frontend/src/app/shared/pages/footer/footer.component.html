@@ -1,0 +1,86 @@
+<section class="container-fluid bg-clr py-2 footer">
+
+    <div class="row" style="justify-content: space-between;">
+        <div class="col-md-5 col-12 ps-4">
+            <h2 class="title">Showroom</h2>
+            <p>Our vision is to provide convenience and help increase your sales business.</p>
+        </div>
+        <div class="col-md-6 col-12 links">
+            <div class="row" style="justify-content: space-between;">
+                <div class="col-md-4 col-12 ps-4">
+                    <h4>About</h4>
+                    <ul>
+                        <li routerLink="/content/how-it-works">How it works</li>
+                        <li routerLink="/content/featured"> Featured</li>
+                        <li routerLink="/content/partnership">Partnership</li>
+                        <li routerLink="/content/business-relation">Bussiness Relation</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-12 ps-4">
+                    <h4>Community</h4>
+                    <ul>
+                        <li routerLink="/content/events">Events</li>
+                        <li routerLink="/content/blogs"> Blog</li>
+                        <li routerLink="/content/podcast">Podcast</li>
+                        <li data-bs-toggle="modal" data-bs-target="#inviteFriendModal"> Invite a friend</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-12 ps-4">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="https://discord.com/login" target="__blank">Discord</a></li>
+                        <li><a href="https://instagram.com" target="__blank">Instagram</a> </li>
+                        <li><a href="https://twitter.com" target="__blank">Twitter</a></li>
+                        <li><a href="https://facebook.com" target="__blank">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 px-4">
+        <hr>
+    </div>
+    <div class="row px-3" style="justify-content: space-between;">
+        <div class="col-md-6 col-12">
+            <p>©2022 MORENT. All rights reserved</p>
+        </div>
+        <div class="col-md-6 col-12 Policy pe-4 responsive">
+            <a href="#" routerLink="/content/privacy-policy">Privacy & Policy</a>
+            <a href="#" routerLink="/content/terms-conditions">Terms & Condition</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="inviteFriendModal" tabindex="-1" aria-labelledby="inviteFriendModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inviteFriendModalTitle">Invite a Friend</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please select the platform you want to share with.
+                <ul class="social-links">
+                    <!-- Facebook -->
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseURL}}" target="_blank">Facebook</a>
+                    </li>
+                    <!-- Whatsapp -->
+                    <li><a href="https://wa.me/?text={{baseURL}}" target="_blank">Whatsapp</a>
+                        <!-- Instagram -->
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <!-- Twitter -->
+                    <li><a href="https://twitter.com/intent/post?text={{baseURL}}" target="_blank">Twitter</a></li>
+                    <!-- Link -->
+                    <li (click)="copy()"><a routerLink="">Link</a></li>
+                </ul>
+                <div class="modal-footer">
+                    <button type="button" class="main-btn outline-btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

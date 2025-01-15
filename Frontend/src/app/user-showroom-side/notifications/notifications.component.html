@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<main class="main-content">
+    <ul class="types">
+      <li>Cars <span class="car-notification notification-dot"></span></li>
+      <li>Bookings <span class="booking-notification notification-dot"></span></li>
+      <li *ngIf="!userService.isAdmin">Showrooms <span class="showroom-notification notification-dot"></span></li>
+    </ul>
+<!-- UNREAD -->
+  <div class="unread">
+    <h3 class="title">Unread</h3>
+    <div class="list">
+      <div class="item my-2 " *ngFor="let item of unreadNotifications | paginate : { itemsPerPage: unreadPageSize, currentPage: unreadCurrentPage, totalItems: unreadTotalCount, id: 'unreadNotification' }">
+        <!-- {{item | json}} -->
+        <h4>{{item.message}}</h4>
+        <span class="dot"></span>
+        <span [ngClass]="item.type === 'car' ? 'car-notification' : item.type === 'showroom' ?  'showroom-notification':'booking-notification'" class="notification-dot dot"></span>
+        <ul class="pictures">
+          <!-- <li *ngFor="let pic of item.booking.Car.pictures"><img [src]="utils.getFile(pic)" alt=""></li> -->
+        </ul> 
+        <button *ngIf="item.type === 'booking'" class="main-btn font-12 m-0" (click)="visitBooking(item.booking._id, item._id)">Visit</button>
+        <button *ngIf="item.type === 'showroom'" class="main-btn font-12 m-0" (click)="visiShowroom(item.showroom._id, item._id)">Visit</button>
+        <button *ngIf="item.type === 'car'" class="main-btn font-12 m-0" (click)="visitCar(item.car._id, item._id)">Visit</button>
+      </div>
+      <div class="not-found" *ngIf="!unreadNotifications.length">Not Found</div>
+    </div>
+    <div class="mark-read" *ngIf="unreadNotifications.length" (click)="readAllNotifications()"><span>Mark all as read</span></div>
+    <pagination [paginationId]="'unreadNotification'" (pageChanged)="pageChangedForUnread($event)" (pageSizeChanged)="pageSizeChangedForUnread($event)" *ngIf="unreadNotifications.length"></pagination>
+  </div>
+
+<!-- READ -->
+  <div class="read">
+    <h3 class="title">Read</h3>
+    <!-- <p class="notification-hint">Following are the notifications within 14 days</p> -->
+    <div class="list">
+      <div class="item" *ngFor="let item of readNotifications | paginate : { itemsPerPage: readPageSize, currentPage: readCurrentPage, totalItems: readTotalCount, id:'readNotifications' }">
+        <h4>{{item.message}}</h4>
+        <span [ngClass]="item.type === 'car' ? 'car-notification' : item.type === 'showroom' ?  'showroom-notification':'booking-notification'" class="notification-dot dot"></span>
+        <button *ngIf="item.type === 'booking'" class="main-btn font-12 m-0" (click)="visitBooking(item.booking._id, item._id)">Visit</button>
+        <button *ngIf="item.type === 'showroom'" class="main-btn font-12 m-0" (click)="visiShowroom(item.showroom._id, item._id)">Visit</button>
+        <button *ngIf="item.type === 'car'" class="main-btn font-12 m-0" (click)="visitCar(item.car._id, item._id)">Visit</button>
+      </div>
+      <div class="not-found" *ngIf="!readNotifications.length">Not Found</div>
+    </div>
+    <pagination (pageChanged)="pageChangedForRead($event)" (pageSizeChanged)="pageSizeChangedForRead($event)" *ngIf="readNotifications.length" paginationId="readNotifications"></pagination>
+  </div>
+</main>

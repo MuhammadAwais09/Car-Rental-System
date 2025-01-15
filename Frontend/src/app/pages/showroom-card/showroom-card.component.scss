@@ -1,0 +1,42 @@
+.showrom-card-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.showrom-card-detail p {
+    margin-bottom: 0;
+}
+
+.clr-p {
+    color: skyblue;
+    font-weight: 450;
+}
+
+.showrom-card-btn {
+    padding: 5px 20px;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+    border: none;
+    margin-top: 10px;
+    background-color: var(--primary);
+}
+
+.cover-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(150px + 3vw);
+    border: thin solid grey;
+    border-radius: 7px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

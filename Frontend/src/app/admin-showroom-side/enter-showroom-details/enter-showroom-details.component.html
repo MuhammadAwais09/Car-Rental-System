@@ -1,0 +1,83 @@
+<section class="container-fluid bg-white py-3">
+    <form class="col-12 enter-showroom-details" [formGroup]="showRoomForm">
+        <div class="col-md-6 col-12">
+            <h4>Showroom Details</h4>
+            <p>Please enter your info</p>
+            <div class="responsive-form">
+                <div class="field">
+                    <label for="showroomname">Showroom Name</label>
+                    <div class="field-input">
+                        <input type="text" id="showroomname" placeholder="Type here...." formControlName="showRoomName">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="location">Location</label>
+                    <select id="location" formControlName="location" class="capitalize field-input">
+                        <option value="">Select Location</option>
+                        <option *ngFor="let location of locations" [value]="location.name">
+                            {{ location.name | titlecase}}
+                        </option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="phone">Phone</label>
+                    <div class="field-input">
+                        <input type="tel" id="phone" numberOnly placeholder="03XXXXXXXXX" maxlength="11"
+                            formControlName="phone">
+                    </div>
+                </div>
+                <div>
+                    <label for="uploadshowroompic">Add pic showroom</label>
+                    <label for="uploadshowroompic" class="image-upload"><img src="{{imageUrl}}" alt=""></label>
+                </div>
+                <input type="file" (change)="onFileChange($event)" hidden id="uploadshowroompic"
+                    formControlName="showRoomPicture">
+            </div>
+        </div>
+
+    </form>
+    <div class="col-12 text-center mt-4">
+        <p class="status-line" *ngIf="statusDescLine">{{statusDescLine}}</p>
+        <button class="main-btn online-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+            *ngIf="isAdmin && isPending">Reject</button>
+        <button class="main-btn online-btn" *ngIf="userService.isAdmin && isPending"
+            (click)="updateStatus('approved')">Approve</button>
+        <button class="main-btn outline-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+            *ngIf="userService.showroomOwner && this.showroomStatus === 'approved'">Delete</button>
+        <button type="submit" *ngIf="userService.showroomOwner && this.showroomStatus !== showroomStatusEnum.PENDING"
+            class="main-btn" (click)="shoroomValue()"> {{saveBtnText}} </button>
+        <button *ngIf="!userService.showroomOwner && !userService.isAdmin" (click)="shoroomValue()"
+            class="main-btn">Create Showroom</button>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Showroom</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="userService.isAdmin; else notAdmin">
+                Are you sure you want to reject the showroom?
+                <div class="modal-footer">
+                    <button type="button" class="main-btn outline-btn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="main-btn" data-bs-dismiss="modal"
+                        (click)="updateStatus('rejected')">Reject</button>
+                </div>
+            </div>
+
+            <ng-template #notAdmin>
+                Are you sure you want to delete the showroom?
+                <div class="modal-footer">
+                    <button type="button" class="main-btn outline-btn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="main-btn" data-bs-dismiss="modal"
+                        (click)="deleteShowroom()">Delete</button>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>

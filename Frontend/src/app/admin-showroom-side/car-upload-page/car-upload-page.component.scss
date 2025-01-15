@@ -1,0 +1,138 @@
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f7f9;
+
+    .form-main-div {
+        padding: min(2em, calc(2vw + 10px));
+        background-color: white;
+        border-radius: 5px;
+
+        button {
+            background-color: orangered;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            padding: 9px 2em;
+            color: white;
+        }
+
+        button.disabled {
+            background-color: unset !important;
+            font-size: unset !important;
+            font-weight: unset !important;
+            border: unset !important;
+            outline: unset !important;
+            padding: unset !important;
+            color: unset !important;
+        }
+    }
+
+    form {
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        h5 {
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            margin-bottom: 0%;
+        }
+
+        .forms-style {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            column-gap: 7em;
+            row-gap: 2em;
+            grid-row: span 2;
+        }
+
+        label {
+            font-family: Plus Jakarta Sans;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+        }
+
+        select {
+            width: 100%;
+            height: 50px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: none;
+            width: 100%;
+            height: 130px;
+            background-color: #F6F7F9;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+        }
+
+        .upload-car-pic {
+            width: 10rem !important;
+            height: 5rem !important;
+            background-color: #F6F7F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    }
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+
+    .uploaded-picture {
+        min-width: 100px;
+        height: 100px;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+
+        i {
+            position: absolute;
+            color: white;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}

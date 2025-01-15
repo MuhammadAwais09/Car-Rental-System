@@ -1,0 +1,33 @@
+.container-fluid{height: 100vh;}
+.sidenav-btn button{
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    margin-bottom: 15px;
+    color: #bac6d7;
+    background-color: white;
+    outline: none;
+    border-radius: 10px;
+    width: 80%;
+    height: 50px;
+    text-align: left;
+    padding-inline-start: 1em;
+}
+.active-btn{
+    background-color: var(--primary)!important;
+    color: white!important;
+    svg [fill]{
+        color: aqua;
+    }
+}
+@media only screen and (min-width: 770px) and (max-width: 1280px){
+    .sidenav-btn button{
+        font-size: medium;
+        font-weight: 500;
+        width: 100%;
+    }
+}
+
+.hide{
+    display: none;
+}

@@ -1,0 +1,111 @@
+<section class="container-fluid container-1">
+    <div class="heading-style">
+        <h5>Edit Car Details</h5>
+        <div *ngIf="pageType==='edit'">
+            <button style="background-color: #e2e2e2; color: black;">Back</button>
+            <button style="background-color: orangered; color: white;">Edit Detail</button>
+
+        </div>
+        <div *ngIf="pageType==='view'">
+            <button style="background-color: #e2e2e2; color: black;">Upload</button>
+            <button style="background-color: orangered; color: white;">Delete Car</button>
+
+        </div>
+    </div>
+    <div class=" mb-5">
+        <div class="col-12 slider">
+            <div class="slider-child">
+                <img [src]="selectImg || '../../../assets/imgs/View.png'" alt="" class="car-image-show">
+                <div class="col-12 small-car-main-div mt-4">
+                    <div class="col-md-3  " *ngFor="let image of smalCarImage">
+
+                        <img src="{{image.image}}" alt="" class="small-car-image"
+                            [ngClass]="{'selected-car-image': selectImg===image.image}"
+                            (click)="showSelectImge(image.image)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid pt-4 container-2">
+    <div class="col-12 form-main-div">
+        <form [formGroup]="uploadCarDetailsForm">
+            <h5>Details</h5>
+            <p>Please enter your info</p>
+            <div class="forms-style">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="tile" id="tile" placeholder="Type here..." formControlName="title">
+                </div>
+                <div>
+                    <label for="feature">Feature</label>
+                    <select name="feature" id="feature" formControlName="feature">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="model">Model</label>
+                    <select name="model-type" id="model-type" formControlName="model">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fuel-type">Fuel Type</label>
+                    <select name="fuel-type" id="fuel-type" formControlName="fueltype">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="brand">Brand</label>
+                    <select name="brand-type" id="brand-type" formControlName="brand">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location">Location</label>
+                    <select name="location" id="location" formControlName="location">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="milage">Milage</label>
+                    <input type="text" name="milage" id="milage" placeholder="Type here..." formControlName="milage">
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" placeholder="Type here..." formControlName="price">
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <label for="driver-type">Driver Type</label>
+                    <select name="driver-type" id="driver-type" formControlName="drivetype">
+                        <option value="">Type Here....</option>
+                        <option value="tpe1">type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea name="Description" id="Description" formControlName="textarea"></textarea>
+                </div>
+                <div>
+                    <label for="add-car-picture">Add picture car</label>
+                    <label for="add-car-picture" class="upload-car-pic"><img src="../../../assets/logo/Vector.png"
+                            alt=""></label>
+                    <input type="file" hidden id="add-car-picture" formArrayName="carPic">
+                </div>
+            </div>
+        </form>
+        <div class="col-12 text-center my-4" *ngIf="pageType==='edit'">
+            <button (click)="submitCarForm()">Upload</button>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,60 @@
+<app-header></app-header>
+<section class="container-fluid pt-5">
+    <div class=" mb-5">
+        <div class="col-12 slider">
+            <div class="slider-child">
+                <img [src]="selectImg||'../../../assets/imgs/View.png'" alt="" class="car-image-show">
+                <div class="col-12 small-car-main-div mt-4">
+                    <div class="col-md-3  " *ngFor="let image of smalCarImage">
+
+                        <img src="{{image.image}}" alt="" class="small-car-image"
+                            [ngClass]="{'selected-car-image':selectImg===image.image}"
+                            (click)="showSelectImge(image.image)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-12 bg-white rounded-1 my-5 " style=" padding: min(2em , calc(2vw + 10px)); ">
+        <form>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" placeholder="">
+            </div>
+            <div>
+                <label for="phone">Phone</label>
+                <input type="text" placeholder="">
+            </div>
+            <div>
+                <label for="cnic">CNIC</label>
+                <input type="text" placeholder="">
+            </div>
+            <div>
+                <div class="col-md-8 col-12">
+                    <label for="showcnicimage">User ID Image</label>
+                    <img src="../../../assets/imgs/35a443321abb9319956d40ef2d024e13.jpg" class="showCnicImage" alt="">
+                </div>
+            </div>
+            <div>
+                <label for="gename">Graneetier Name</label>
+                <input type="text" placeholder="">
+            </div>
+            <div>
+                <div class="col-md-8 col-12">
+                    <label for="showcnicimage">User ID Image</label>
+                    <img src="../../../assets/imgs/35a443321abb9319956d40ef2d024e13.jpg" class="showCnicImage" alt="">
+                </div>
+            </div>
+            <div>
+                <label for="cnic">CNIC</label>
+                <input type="text" placeholder="">
+            </div>
+        </form>
+        <div class="col-12 btns ">
+            <button>Decline</button>
+            <button>Accept </button>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

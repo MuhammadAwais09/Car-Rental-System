@@ -1,0 +1,54 @@
+<div class="back-btn" >
+<i class="fa-solid fa-arrow-left" (click)="utilService.back()"></i>
+</div>
+<div class="my-profile-main">
+    <form class="form-border">
+      <div class="heading">
+        <span>My profile</span>
+      </div>
+      <div class="photo-section">
+        <div class="profile-image">
+          <!-- <img *ngIf="user && user?.['profile_image']" [src]="http.imageSource(user.profile_image)" alt="" /> -->
+          <img [src]="utilService.profileImage" alt="" />
+        </div>
+        <div class="upload-section">
+          <label for="profile" class="main-btn" style="cursor: pointer;">Upload</label>
+          <input type="file" id="profile" style="display: none" (change)="handleUpload($event)"
+            accept=".jpg, .jpeg, .png" />
+          <div class="req-extensions">
+            <div class="icon d-flex">
+              <img src="assets/imgs/info.png" width="16" alt="info" />
+            </div>
+            <span class="text">JPG, JPEG, PNG Min: 400px, Max: 1024px <br> The image you upload will be saved permanently</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="general-info-form">
+        <div class="general-info">
+            <div class="text-field">
+                <label>First name</label>
+                <div class="field">
+                  <input type="text" [(ngModel)]="user.firstName" name="firstName" required class="input-form"/>
+                </div>
+              </div>
+              <div class="text-field">
+                <label>Last name</label>
+                <div class="field">
+                  <input type="text" [(ngModel)]="user.lastName" name="lastName" required class="input-form"/>
+                </div>
+              </div>
+              <div class="text-field">
+                <label>Email</label>
+                <div class="field disabled">
+                  <input type="email" disabled name="email" [(ngModel)]="user.email" required class="input-form"/>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="submit-buttons">
+        <button class="outline-btn" type="submit" (click)="logout()">Logout</button>
+        <button class="submit-btn" type="submit" (click)="updateProfile()">Save changes</button>
+      </div>
+    </form>
+  </div>

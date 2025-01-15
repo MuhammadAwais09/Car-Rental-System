@@ -1,0 +1,295 @@
+#col-fix {
+
+}
+
+#col-fix .sf {
+
+}
+
+.back-btn{
+    cursor: pointer;
+}
+
+.back-div{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 50%;
+    padding-top: 1rem;
+    padding-left: 2rem;
+}
+
+.back-div i{
+    color: var(--primary);
+}
+
+@media(max-width:981px){
+    .back-div{
+        width: 100%;
+    }
+}
+
+.account-type{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+   
+    h1{
+        position: absolute;
+        top: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        i{
+            cursor: pointer;
+            font-size: 16px;
+        }
+    }
+}
+.col-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // flex-wrap: wrap;
+    /* justify-content: center; */
+
+    .form-div{
+        flex-grow: 1;
+        height: 90vh;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .form-div-inner{
+            height: 100vh;
+        }
+
+        &::-webkit-scrollbar{
+            width: 3px;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: rgb(205, 205, 205);
+            width: 4px;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+
+
+        &-inner{
+            width: min(100%, 550px);
+            padding-inline: min(30px, calc(2vw + 20px));
+            margin: auto;
+        }
+    }
+}
+
+.d-block {
+    object-fit: cover;
+    height: 100vh;
+}
+
+.form-section input {
+    width: 100%;
+    height: 45px;
+    font-family: Arial, FontAwesome;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    background-color: #c3c6d1;
+}
+
+.form-input-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-input-flex div {
+    width: 49%;
+}
+
+/*================= TITLE STARTS ==================*/
+.title{
+    h2{
+        font-size: min(40px, calc(2vw + 18px));
+        color:#2D2D2D;
+        text-align: start;
+        font-weight: 700; 
+        margin-bottom: 0.5em; 
+    }
+    h3{
+        font-size: min(30px, calc(2vw + 15px));
+        color: #333333;
+        text-align: start;
+        font-weight: 700;
+    }
+    p{
+        font-size: 15px;
+        color: #333333;
+        text-align: center;
+    }
+}
+
+.spinner-border {
+    width: 15px;
+    height: 15px;
+}
+
+/*================= TITLE END ==================*/
+
+.route-btn {
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 700;
+    color: var(--primary);
+    margin-left: 6px;
+}
+
+label {
+    width: 100%;
+
+}
+
+.logo {
+    display: none;
+}
+
+.input-invalidate {
+    border: 1px solid red !important;
+}
+
+.input-validate {
+    border: 1px solid green !important;
+}
+
+.password-validation {
+    font-weight: 100;
+    color: red;
+}
+
+.password-icon-parent {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    cursor: pointer;
+    z-index: 111;
+}
+
+span input {
+    width: 20px !important;
+    height: 15px !important;
+    margin-bottom: 0% !important;
+    accent-color: var(--primary);
+    border-radius: 50px !important;
+    cursor: not-allowed;
+}
+
+/*================= OTP STARTED ==================*/
+
+.otp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // button {
+    //     padding: 0.75em 2em;
+    //     width: min(100%, 300px);
+    //     border: none;
+    //     outline: none;
+        
+    //     background-color: var(--primary);
+    //     color: white;
+    //     font-size: 15px;
+    //     font-weight: 600;
+    //     border-radius: 5px;
+    // }
+}
+
+.send-otp{
+    margin-block: 1em;
+
+    p{
+        margin: 0;
+    }
+    button{
+        border: none;
+        font-weight: bold;
+        color: var(--primary);
+    }
+}
+
+
+/*================= OTP ENDED ==================*/
+
+
+.forget-btn {
+    border-bottom: thin solid var(--primary);
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/*================= USER SELECTION AREA ==================*/
+.user-select-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    width: 100%;
+    
+    button{
+        width: min(95%, 250px);
+        border: none;
+        outline: none;
+        background-color: var(--primary);
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        padding: 0.75em 1em;
+        border-radius: 5px;
+    }
+}
+/*================= USER SELECTION AREA ENDS ==================*/
+
+
+@media only screen and (min-width: 300px) and (max-width: 980px) {
+    .slider {
+        display: none;
+    }
+
+    .logo {
+        display: block;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .form-input-flex div {
+        width: 100%;
+    }
+}

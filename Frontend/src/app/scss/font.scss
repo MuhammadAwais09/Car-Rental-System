@@ -1,0 +1,49 @@
+// Define font faces
+
+@font-face {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    src: url('../../assets/fonts/PlusJakartaSans-Regular.ttf') format('woff2'),
+         url('../../assets/fonts/PlusJakartaSans-Regular.ttf') format('woff');
+    font-weight: 400; // Regular
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    src: url('../../assets/fonts/PlusJakartaSans-Medium.ttf') format('woff2'),
+         url('../../assets/fonts/PlusJakartaSans-Medium.ttf') format('woff');
+    font-weight: 500; // Bold
+    font-style: medium;
+  }
+  
+  @font-face {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    src: url('../../assets/fonts/PlusJakartaSans-SemiBold.ttf') format('woff2'),
+         url('../../assets/fonts/PlusJakartaSans-SemiBold.ttf') format('woff');
+    font-weight: 600; // Bold
+    font-style: bolder;
+  }
+  
+  @font-face {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    src: url('../../assets/fonts/PlusJakartaSans-Bold.ttf') format('woff2'),
+         url('../../assets/fonts/PlusJakartaSans-Bold.ttf') format('woff');
+    font-weight: 700; // Bold
+    font-style: bold;
+  }
+  
+  // Add more weights as needed
+  
+  // Apply fonts to elements
+  
+  body, label, input, input::placeholder, textarea, textarea::placeholder {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700; // Bold
+  }
+  
+  
+  

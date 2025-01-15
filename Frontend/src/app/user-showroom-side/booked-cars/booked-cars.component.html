@@ -1,0 +1,38 @@
+<section class="container-fluid container-style">
+    <div class="col-12 top-btn">
+        <h3 class="grey-title">{{pageTitle}}</h3>
+    </div>
+    <div class="col-12 my-5 showroom-btns " *ngIf="!isFavoritePage">
+        <div class="col-12 status-btns">
+            <!-- <button [ngClass]="{'filter-btns-select':filterBtn===''}" (click)="onStatusChange('')">All</button> -->
+            <button [class.active]="filterBtn === 'pending'" (click)="onStatusChange('pending')">Pending</button>
+            <button [class.active]="filterBtn ==='accepted'" (click)="onStatusChange('accepted')">Accepted</button>
+            <button *ngIf="!isMyShowroom" [class.active]="filterBtn ==='cancelled'"
+                (click)="onStatusChange('cancelled')">Cancelled</button>
+            <button [class.active]="filterBtn ==='rejected'" (click)="onStatusChange('rejected')">Rejected</button>
+            <button [class.active]="filterBtn ==='completed'" (click)="onStatusChange('completed')">Completed</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-12 " *ngFor="let carItem of carsData  | paginate : { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalRecords, id: 'bookedCars' }">
+            <app-cards
+              [car]="carItem"
+              [isBooking]="!isFavoritePage"
+              [isShowroomOwner]="isMyShowroom"
+              [showroomId]="showroomId"
+              [btnDiv]="true"
+              [isFavorite]="isFavoritePage"
+              [isUserBooking]="isUserBooking"
+              (favoriteEvent)="getCars()"
+              (updateStatusEmitter)="statusChange($event)"
+            ></app-cards>
+        </div>
+        <div class="pagination" *ngIf="carsData.length">
+        <pagination paginationId="bookedCars" (pageChanged)="pageChanged($event)" (pageSizeChanged)="pageSizeChanged($event)"></pagination>
+          </div>
+    </div>
+    <div class="not-found" *ngIf="!carsData.length">
+        {{notFound}}
+    </div>
+</section>

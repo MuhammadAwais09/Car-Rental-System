@@ -1,0 +1,27 @@
+main {
+    header {
+        .filter-btns {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            flex-wrap: wrap;
+        
+            button {
+                background-color: transparent;
+                border: 1px solid var(--primary);
+                color: var(--primary);
+                outline: none;
+                margin-bottom: 10px;
+                border-radius: 100px;
+                padding: 0.5em 1em;
+        
+                &.active {
+                    border: 1px solid var(--primary) !important;
+                    // border-radius: 5px;
+                    background-color: var(--primary);
+                    color: white;
+                }
+            }
+        }
+    }
+}
