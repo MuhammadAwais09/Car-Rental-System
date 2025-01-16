@@ -1,7 +1,7 @@
 **Title: Car Rental System 🚗📋**
 
 **Overview:**
-This repository contains a Car Rental System built with modern web technologies, providing a seamless experience for both users and administrators. The project leverages Angular for the frontend, Firebase for real-time database and authentication, and Node.js for backend APIs and server-side logic.
+This repository contains a Car Rental System built with modern web technologies, providing a seamless experience for both users and administrators. The project leverages React Native for the frontend, Firebase for real-time database and authentication, and Node.js for backend APIs and server-side logic.
 
 **Features:**
 User-Friendly UI: Intuitive and responsive design using Angular for enhanced user experience.
